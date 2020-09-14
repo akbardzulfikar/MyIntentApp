@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.Button
 import co.MoveActivity
 import co.MoveWithDataActivity
+import co.MoveWithObjectActivity
+import co.Person
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +20,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val btnMoveWithDataActivity: Button = findViewById(R.id.btn_move_activity_with_data)
         btnMoveWithDataActivity.setOnClickListener(this)
+
+        val btnMoveWithObject: Button = findViewById(R.id.btn_move_activity_with_object)
+        btnMoveWithObject.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -31,6 +36,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME, "DicodingAcademyBoy")
                 moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE, 5)
                 startActivity(moveWithDataIntent)
+            }
+            R.id.btn_move_activity_with_object -> {
+                val person = Person(
+                        "DicodingAcademy",
+                        5,
+                        "academy@dicoding.com",
+                        "Bandung"
+                )
+                val moveWithObjectIntent = Intent(this@MainActivity, MoveWithObjectActivity::class.java)
+                moveWithObjectIntent.putExtra(MoveWithObjectActivity.EXTRA_PERSON, person)
+                startActivity(moveWithObjectIntent)
             }
         }
     }
